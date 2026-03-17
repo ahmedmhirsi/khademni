@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — Khademni</title>
+    <meta name="description"
+        content="Log in to your Khademni account to find jobs, manage applications, and connect with top companies in Tunisia." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="auth.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+    <div class="auth-page">
+        <!-- Background shapes -->
+        <div class="hero__bg-shapes">
+            <div class="shape shape--1"></div>
+            <div class="shape shape--2"></div>
+        </div>
+
+        <div class="auth-container">
+            <div class="auth-card">
+                <!-- Logo -->
+                <div class="auth-card__logo">
+                    <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+                        <span class="logo-icon"><i class="fas fa-briefcase"></i></span>
+                        Khademni
+                    </a>
+                </div>
+
+                <h1 class="auth-card__title">Welcome back</h1>
+                <p class="auth-card__subtitle">Log in to your account to continue</p>
+
+                <!-- Alert Box -->
+                <div class="alert" id="loginAlert"></div>
+
+                <!-- Google Login -->
+                <div class="social-buttons" id="googleBtnContainer"
+                    style="display:flex; justify-content:center; margin-bottom: 24px;">
+                    <!-- Google button will render here -->
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="email">Email address <span class="required">*</span></label>
+                        <div class="form-input-icon">
+                            <input type="email" id="email" class="form-input" placeholder="your@email.com"
+                                autocomplete="email" />
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="form-error" id="email-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password <span class="required">*</span></label>
+                        <div class="form-input-icon">
+                            <input type="password" id="password" class="form-input" placeholder="Enter your password"
+                                autocomplete="current-password" />
+                            <i class="fas fa-lock"></i>
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-error" id="password-error"></div>
+                    </div>
+
+                    <div style="display:flex;justify-content:flex-end;margin-bottom:24px;">
+                        <a href="forgot-password.html" class="auth-link" style="margin-top:0;">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--lg btn--block">
+                        <i class="fas fa-sign-in-alt"></i> Log In
+                    </button>
+                </form>
+
+                <p class="auth-footer">
+                    Don't have an account? <a href="register.html">Sign Up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

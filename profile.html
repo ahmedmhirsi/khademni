@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile — Khademni</title>
+    <meta name="description"
+        content="Manage your Khademni profile, update your skills, experience, and account settings." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="auth.css" />
+</head>
+
+<body>
+
+    <!-- Profile Navbar -->
+    <nav class="profile-nav">
+        <div class="container">
+            <a href="index.html" class="navbar__logo">
+                <span class="logo-icon"><i class="fas fa-briefcase"></i></span>
+                Khademni
+            </a>
+            <div class="profile-nav__links">
+                <a href="index.html">Home</a>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <div class="profile-nav__user">
+                    <div class="profile-nav__user-avatar" id="navAvatar">U</div>
+                    <span id="navUserName">User</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <main class="profile-page">
+        <div class="container">
+
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar" id="profileAvatar">U</div>
+                <div class="profile-header__info">
+                    <h1 id="profileName">Loading...</h1>
+                    <p id="profileEmail">—</p>
+                    <span class="badge badge--candidate" id="profileRole">—</span>
+                </div>
+            </div>
+
+            <!-- Profile Form -->
+            <form id="profileForm">
+
+                <!-- Personal Info Section -->
+                <div class="profile-section">
+                    <h2 class="profile-section__title">
+                        <i class="fas fa-user-edit"></i> Personal Information
+                    </h2>
+
+                    <div class="form-group">
+                        <label for="profileNameInput">Full Name</label>
+                        <input type="text" id="profileNameInput" class="form-input" placeholder="Your full name" />
+                    </div>
+
+                    <!-- ===== CANDIDATE SECTION ===== -->
+                    <div id="candidateSection">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <div class="form-input-icon">
+                                    <input type="text" id="location" class="form-input" placeholder="City, Tunisia" />
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="experience_years">Years of Experience</label>
+                                <div class="form-input-icon">
+                                    <input type="number" id="experience_years" class="form-input" placeholder="0"
+                                        min="0" max="50" />
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" class="form-input"
+                                placeholder="Tell employers about yourself, your goals, and what makes you stand out..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skills <small style="color:var(--text-muted);font-weight:400;">(press Enter or comma
+                                    to add)</small></label>
+                            <div class="tags-input-wrapper" id="skillTagsContainer">
+                                <input type="text" class="tags-input" id="skillInput"
+                                    placeholder="e.g. JavaScript, React, SQL..." />
+                            </div>
+                        </div>
+
+                        <!-- CV Upload -->
+                        <div class="form-group">
+                            <label>Resume / CV</label>
+                            <div class="file-upload">
+                                <input type="file" id="cvUpload" accept=".pdf,.doc,.docx" />
+                                <div class="file-upload__icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                                <div class="file-upload__hint">PDF, DOC, DOCX — Max 5MB</div>
+                            </div>
+                            <div id="currentCv" style="margin-top:10px;font-size:0.85rem;color:var(--text-secondary);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== COMPANY SECTION ===== -->
+                    <div id="companySection" style="display:none;">
+                        <div class="form-group">
+                            <label for="company_name">Company Name</label>
+                            <div class="form-input-icon">
+                                <input type="text" id="company_name" class="form-input"
+                                    placeholder="Your company name" />
+                                <i class="fas fa-building"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Company Description</label>
+                            <textarea id="description" class="form-input"
+                                placeholder="Describe your company, culture, and what you offer..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="website">Website</label>
+                                <div class="form-input-icon">
+                                    <input type="url" id="website" class="form-input"
+                                        placeholder="https://yourcompany.com" />
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyLocation">Location</label>
+                                <div class="form-input-icon">
+                                    <input type="text" id="companyLocation" class="form-input"
+                                        placeholder="City, Tunisia" />
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Logo Upload -->
+                        <div class="form-group">
+                            <label>Company Logo</label>
+                            <div class="file-upload">
+                                <input type="file" id="logoUpload" accept="image/*" />
+                                <div class="file-upload__icon"><i class="fas fa-image"></i></div>
+                                <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                                <div class="file-upload__hint">JPEG, PNG, WebP — Max 5MB</div>
+                            </div>
+                            <div id="currentLogo" style="margin-top:10px;"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--lg" style="margin-top:8px;">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </form>
+
+            <!-- Change Password Section -->
+            <div class="profile-section">
+                <h2 class="profile-section__title">
+                    <i class="fas fa-shield-alt"></i> Change Password
+                </h2>
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="current_password">Current Password <span class="required">*</span></label>
+                        <div class="form-input-icon">
+                            <input type="password" id="current_password" class="form-input"
+                                placeholder="Enter current password" />
+                            <i class="fas fa-lock"></i>
+                            <button type="button" class="password-toggle" onclick="togglePassword('current_password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-error" id="current_password-error"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new_password">New Password <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="password" id="new_password" class="form-input"
+                                    placeholder="Min. 8 characters" />
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="form-error" id="new_password-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm New Password <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="password" id="confirm_password" class="form-input"
+                                    placeholder="Repeat new password" />
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="form-error" id="confirm_password-error"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn--outline btn--lg" style="margin-top:8px;">
+                        <i class="fas fa-key"></i> Update Password
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

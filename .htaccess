@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Don't rewrite existing files/dirs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Pass Authorization header to PHP
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Route /api/* to api/index.php
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]

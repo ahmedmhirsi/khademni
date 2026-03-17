@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — Khademni</title>
+    <meta name="description"
+        content="Create your Khademni account. Join thousands of candidates and companies on Tunisia's leading recruitment platform." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="auth.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+    <div class="auth-page">
+        <div class="hero__bg-shapes">
+            <div class="shape shape--1"></div>
+            <div class="shape shape--2"></div>
+        </div>
+
+        <div class="auth-container wide">
+            <div class="auth-card">
+
+                <div class="auth-card__logo">
+                    <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+                        <span class="logo-icon"><i class="fas fa-briefcase"></i></span>
+                        Khademni
+                    </a>
+                </div>
+
+                <h1 class="auth-card__title">Create your account</h1>
+                <p class="auth-card__subtitle">Join Tunisia's #1 recruitment platform</p>
+
+                <div class="alert" id="registerAlert"></div>
+
+                <!-- Role Selector -->
+                <div class="role-tabs">
+                    <button class="role-tab active" data-role="candidate">
+                        <i class="fas fa-user"></i>&nbsp; I'm a Candidate
+                    </button>
+                    <button class="role-tab" data-role="company">
+                        <i class="fas fa-building"></i>&nbsp; I'm a Company
+                    </button>
+                </div>
+
+                <!-- Google Signup -->
+                <div class="social-buttons" id="googleBtnContainer"
+                    style="display:flex; justify-content:center; margin-bottom: 24px;">
+                    <!-- Google button will render here -->
+                </div>
+
+                <!-- Register Form -->
+                <form id="registerForm" novalidate>
+
+                    <!-- Candidate Fields (default visible) -->
+                    <div id="candidateFields">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="text" id="name" class="form-input" placeholder="Ahmed Ben Ali"
+                                    autocomplete="name" />
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="form-error" id="name-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Company Fields (hidden by default) -->
+                    <div id="companyFields" style="display:none;">
+                        <div class="form-group">
+                            <label for="name">Contact Person Name <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="text" class="form-input" placeholder="Full name" autocomplete="name"
+                                    onfocus="document.getElementById('name').value=this.value"
+                                    oninput="document.getElementById('name').value=this.value" />
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="company_name">Company Name <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="text" id="company_name" class="form-input"
+                                    placeholder="Your company name" />
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="form-error" id="company_name-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Shared Fields -->
+                    <div class="form-group">
+                        <label for="email">Email address <span class="required">*</span></label>
+                        <div class="form-input-icon">
+                            <input type="email" id="email" class="form-input" placeholder="your@email.com"
+                                autocomplete="email" />
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="form-error" id="email-error"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="password" id="password" class="form-input" placeholder="Min. 8 characters"
+                                    autocomplete="new-password" />
+                                <i class="fas fa-lock"></i>
+                                <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="password-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirm">Confirm Password <span class="required">*</span></label>
+                            <div class="form-input-icon">
+                                <input type="password" id="password_confirm" class="form-input"
+                                    placeholder="Repeat password" autocomplete="new-password" />
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="form-error" id="password_confirm-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms" />
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy
+                                Policy</a></label>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--lg btn--block">
+                        <i class="fas fa-rocket"></i> Create Account
+                    </button>
+                </form>
+
+                <p class="auth-footer">
+                    Already have an account? <a href="login.html">Log In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

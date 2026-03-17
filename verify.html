@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Email — Khademni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="auth.css" />
+    <style>
+        .verify-box {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .verify-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .verify-icon.loading {
+            color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        .verify-icon.success {
+            color: var(--success);
+        }
+
+        .verify-icon.error {
+            color: var(--error);
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-page">
+        <!-- Background shapes -->
+        <div class="hero__bg-shapes">
+            <div class="shape shape--1"></div>
+            <div class="shape shape--2"></div>
+        </div>
+
+        <div class="auth-container">
+            <div class="auth-card verify-box" id="verifyContainer">
+
+                <i class="fas fa-spinner verify-icon loading" id="statusIcon"></i>
+                <h1 class="auth-card__title" id="statusTitle">Verifying your email...</h1>
+                <p class="auth-card__subtitle" id="statusMessage">Please wait while we verify your account.</p>
+
+                <div style="margin-top: 32px; display: none;" id="actionBtnContainer">
+                    <a href="login.html" class="btn btn--primary btn--lg" id="actionBtn">
+                        Go to Login
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- We use the ApiClient from auth.js -->
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+
+            const icon = document.getElementById('statusIcon');
+            const title = document.getElementById('statusTitle');
+            const msg = document.getElementById('statusMessage');
+            const actionBtn = document.getElementById('actionBtnContainer');
+
+            if (!token) {
+                icon.className = 'fas fa-exclamation-circle verify-icon error';
+                title.textContent = 'Invalid Link';
+                msg.textContent = 'The verification link is missing or broken. Please check your email and try again.';
+                return;
+            }
+
+            // Call the API
+            const { ok, data } = await ApiClient.get(`/verify-email?token=${token}`);
+
+            actionBtn.style.display = 'inline-block';
+
+            if (ok && data.success) {
+                icon.className = 'fas fa-check-circle verify-icon success';
+                title.textContent = 'Email Verified!';
+                msg.textContent = data.message || 'Your email address has been successfully verified. You can now log in to your account.';
+            } else {
+                icon.className = 'fas fa-times-circle verify-icon error';
+                title.textContent = 'Verification Failed';
+                msg.textContent = data.message || 'The verification link is invalid or has expired.';
+            }
+        });
+    </script>
+</body>
+
+</html>
